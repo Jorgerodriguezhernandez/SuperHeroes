@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
             new GithubQueryTask().execute(githubUrl);
         }else if(itemId == R.id.clear){
-
+            urlDisplay.setText("");
             searchResults.setText("");
         }
         return true;
