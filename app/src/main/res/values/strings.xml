@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SuperHeroes</string>
+    <string name="search">Launch</string>
+    <string name="clear">Launch</string>
+</resources>
