@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s){
+            circuloCarga.setVisibility(View.INVISIBLE);
             if (s != null && !s.equals("")){
                 searchResults.setText(s);
             }
