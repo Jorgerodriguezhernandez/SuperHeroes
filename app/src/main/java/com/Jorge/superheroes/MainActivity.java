@@ -76,5 +76,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         urlDisplay= (TextView) findViewById((R.id.url_display));
         searchResults= (TextView) findViewById((R.id.github_search_results));
+        MensajeError = (TextView) findViewById((R.id.error_message));
+        circuloCarga = (ProgressBar) findViewById((R.id.request_progress));
     }
 }
