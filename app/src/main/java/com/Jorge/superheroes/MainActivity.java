@@ -37,11 +37,23 @@ public class MainActivity extends AppCompatActivity {
             return resultSearch;
         }
 
+        private void showResults(){
+            mensajeError.setVisibility(View.INVISIBLE);
+            searchResults.setVisibility(View.VISIBLE);
+        }
+        private void showError(){
+            mensajeError.setVisibility(View.VISIBLE);
+            searchResults.setVisibility(View.INVISIBLE);
+        }
+
         @Override
         protected void onPostExecute(String s){
             circuloCarga.setVisibility(View.INVISIBLE);
             if (s != null && !s.equals("")){
+                showResults();
                 searchResults.setText(s);
+            } else{
+                showError();
             }
 
         }
