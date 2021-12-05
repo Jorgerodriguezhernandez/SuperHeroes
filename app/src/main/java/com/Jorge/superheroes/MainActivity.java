@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -18,8 +20,11 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     TextView urlDisplay;
     TextView searchResults;
+    TextView mensajeError;
+    ProgressBar circuloCarga;
 
     public class  GithubQueryTask extends AsyncTask<URL, Void,String> {
+        protected void onPreExecute(){circuloCarga.setVisibility(View.VISIBLE);}
         @Override
         protected String doInBackground(URL... urls) {
             URL searchUrl = urls[0];
@@ -32,10 +37,23 @@ public class MainActivity extends AppCompatActivity {
             return resultSearch;
         }
 
+        private void showResults(){
+            mensajeError.setVisibility(View.INVISIBLE);
+            searchResults.setVisibility(View.VISIBLE);
+        }
+        private void showError(){
+            mensajeError.setVisibility(View.VISIBLE);
+            searchResults.setVisibility(View.INVISIBLE);
+        }
+
         @Override
         protected void onPostExecute(String s){
+            circuloCarga.setVisibility(View.INVISIBLE);
             if (s != null && !s.equals("")){
+                showResults();
                 searchResults.setText(s);
+            } else{
+                showError();
             }
 
         }
@@ -71,8 +89,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         urlDisplay= (TextView) findViewById((R.id.url_display));
         searchResults= (TextView) findViewById((R.id.github_search_results));
+        mensajeError = (TextView) findViewById((R.id.error_message));
+        circuloCarga = (ProgressBar) findViewById((R.id.request_progress));
     }
 }
