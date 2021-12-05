@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar circuloCarga;
 
     public class  GithubQueryTask extends AsyncTask<URL, Void,String> {
+        protected void onPreExecute(){circuloCarga.setVisibility(View.VISIBLE);}
         @Override
         protected String doInBackground(URL... urls) {
             URL searchUrl = urls[0];
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         urlDisplay= (TextView) findViewById((R.id.url_display));
         searchResults= (TextView) findViewById((R.id.github_search_results));
-        MensajeError = (TextView) findViewById((R.id.error_message));
+        mensajeError = (TextView) findViewById((R.id.error_message));
         circuloCarga = (ProgressBar) findViewById((R.id.request_progress));
     }
 }
