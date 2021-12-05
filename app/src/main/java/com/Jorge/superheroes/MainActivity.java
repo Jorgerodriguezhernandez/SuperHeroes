@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -18,6 +19,8 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     TextView urlDisplay;
     TextView searchResults;
+    TextView mensajeError;
+    ProgressBar circuloCarga;
 
     public class  GithubQueryTask extends AsyncTask<URL, Void,String> {
         @Override
@@ -71,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         urlDisplay= (TextView) findViewById((R.id.url_display));
         searchResults= (TextView) findViewById((R.id.github_search_results));
     }
